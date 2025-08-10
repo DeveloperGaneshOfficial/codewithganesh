@@ -1,0 +1,1019 @@
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWithGanesh - Learn Coding with CodeSpire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Roboto Mono', 'monospace'],
+                    },
+                    colors: {
+                        'primary': '#FF0000', // YouTube red
+                        'primary-dark': '#cc0000',
+                        'tech-blue': '#1E3A8A',
+                        'tech-blue-light': '#3B82F6',
+                        'tech-dark': '#0F172A',
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        /* Blueprint pattern background */
+        .blueprint-pattern {
+            background-color: rgba(255, 255, 255, 0.97);
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: -1px -1px;
+        }
+        
+        .dark .blueprint-pattern {
+            background-color: rgba(15, 23, 42, 0.97);
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+        }
+
+        /* Smooth transitions for dark mode */
+        .transition-theme {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* Glow effects */
+        .glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        
+        .dark .glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Video card hover effects */
+        .video-card {
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .play-button {
+            opacity: 0.9;
+            transform: scale(0.9);
+            transition: all 0.2s ease;
+        }
+        
+        .video-card:hover .play-button {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Animated underline for nav links */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #FF0000;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:Roboto Mono, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-10{bottom:-2.5rem}.-left-10{left:-2.5rem}.-right-10{right:-2.5rem}.-top-10{top:-2.5rem}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.right-3{right:0.75rem}.top-0{top:0px}.top-3{top:0.75rem}.z-10{z-index:10}.z-50{z-index:50}.mx-2{margin-left:0.5rem;margin-right:0.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-12{margin-bottom:3rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mr-2{margin-right:0.5rem}.mr-4{margin-right:1rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-20{margin-top:5rem}.mt-4{margin-top:1rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-0{height:0px}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-3{height:0.75rem}.h-4{height:1rem}.h-48{height:12rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-96{height:24rem}.h-auto{height:auto}.h-full{height:100%}.w-10{width:2.5rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-16{width:4rem}.w-3{width:0.75rem}.w-4{width:1rem}.w-48{width:12rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-96{width:24rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.flex-grow{flex-grow:1}.origin-top-right{transform-origin:top right}.-translate-x-1\/3{--tw-translate-x:-33.333333%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-1\/3{--tw-translate-x:33.333333%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-1\/2{--tw-translate-y:50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.select-none{-webkit-user-select:none;user-select:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-black\/70{background-color:rgb(0 0 0 / 0.7)}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-primary{--tw-bg-opacity:1;background-color:rgb(255 0 0 / var(--tw-bg-opacity, 1))}.bg-primary\/10{background-color:rgb(255 0 0 / 0.1)}.bg-primary\/20{background-color:rgb(255 0 0 / 0.2)}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-tech-blue-light\/20{background-color:rgb(59 130 246 / 0.2)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-yellow-100{--tw-bg-opacity:1;background-color:rgb(254 249 195 / var(--tw-bg-opacity, 1))}.bg-yellow-500{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-primary{--tw-gradient-from:#FF0000 var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 0 0 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-tech-blue{--tw-gradient-from:#1E3A8A var(--tw-gradient-from-position);--tw-gradient-to:rgb(30 58 138 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-white{--tw-gradient-from:#fff var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 255 255 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-primary-dark{--tw-gradient-to:#cc0000 var(--tw-gradient-to-position)}.to-slate-100{--tw-gradient-to:#f1f5f9 var(--tw-gradient-to-position)}.to-tech-blue-light{--tw-gradient-to:#3B82F6 var(--tw-gradient-to-position)}.fill-current{fill:currentColor}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-2{padding-bottom:0.5rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pb-\[56\.25\%\]{padding-bottom:56.25%}.pl-4{padding-left:1rem}.pl-8{padding-left:2rem}.pt-2{padding-top:0.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-inter{font-family:Inter, sans-serif}.font-mono{font-family:Roboto Mono, monospace}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.text-blue-100{--tw-text-opacity:1;color:rgb(219 234 254 / var(--tw-text-opacity, 1))}.text-blue-200{--tw-text-opacity:1;color:rgb(191 219 254 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-primary{--tw-text-opacity:1;color:rgb(255 0 0 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-tech-blue{--tw-text-opacity:1;color:rgb(30 58 138 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-600{--tw-text-opacity:1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-blue-200::placeholder{--tw-placeholder-opacity:1;color:rgb(191 219 254 / var(--tw-placeholder-opacity, 1))}.opacity-10{opacity:0.1}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\:bg-primary-dark:hover{--tw-bg-opacity:1;background-color:rgb(204 0 0 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:text-primary:hover{--tw-text-opacity:1;color:rgb(255 0 0 / var(--tw-text-opacity, 1))}.hover\:text-primary-dark:hover{--tw-text-opacity:1;color:rgb(204 0 0 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-transparent:focus{border-color:transparent}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-white\/30:focus{--tw-ring-color:rgb(255 255 255 / 0.3)}.group:hover .group-hover\:translate-x-1{--tw-translate-x:0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-slate-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.dark\:bg-blue-900\/30:is(.dark *){background-color:rgb(30 58 138 / 0.3)}.dark\:bg-green-900\/30:is(.dark *){background-color:rgb(20 83 45 / 0.3)}.dark\:bg-primary\/10:is(.dark *){background-color:rgb(255 0 0 / 0.1)}.dark\:bg-primary\/20:is(.dark *){background-color:rgb(255 0 0 / 0.2)}.dark\:bg-purple-900\/30:is(.dark *){background-color:rgb(88 28 135 / 0.3)}.dark\:bg-slate-600:is(.dark *){--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800\/50:is(.dark *){background-color:rgb(30 41 59 / 0.5)}.dark\:bg-slate-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:bg-tech-blue-light\/10:is(.dark *){background-color:rgb(59 130 246 / 0.1)}.dark\:bg-tech-dark:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:bg-tech-dark\/90:is(.dark *){background-color:rgb(15 23 42 / 0.9)}.dark\:bg-yellow-900\/30:is(.dark *){background-color:rgb(113 63 18 / 0.3)}.dark\:from-tech-dark:is(.dark *){--tw-gradient-from:#0F172A var(--tw-gradient-from-position);--tw-gradient-to:rgb(15 23 42 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.dark\:to-slate-900:is(.dark *){--tw-gradient-to:#0f172a var(--tw-gradient-to-position)}.dark\:text-blue-300:is(.dark *){--tw-text-opacity:1;color:rgb(147 197 253 / var(--tw-text-opacity, 1))}.dark\:text-blue-400:is(.dark *){--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.dark\:text-green-300:is(.dark *){--tw-text-opacity:1;color:rgb(134 239 172 / var(--tw-text-opacity, 1))}.dark\:text-green-400:is(.dark *){--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.dark\:text-purple-400:is(.dark *){--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.dark\:text-slate-200:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.dark\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.dark\:text-slate-500:is(.dark *){--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.dark\:text-slate-900:is(.dark *){--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:text-yellow-300:is(.dark *){--tw-text-opacity:1;color:rgb(253 224 71 / var(--tw-text-opacity, 1))}.dark\:shadow-slate-900\/30:is(.dark *){--tw-shadow-color:rgb(15 23 42 / 0.3);--tw-shadow:var(--tw-shadow-colored)}.dark\:hover\:bg-slate-700:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:hover\:bg-slate-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-primary:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 0 0 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:inline-block{display:inline-block}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:col-span-1{grid-column:span 1 / span 1}.md\:mx-0{margin-left:0px;margin-right:0px}.md\:block{display:block}.md\:flex{display:flex}.md\:hidden{display:none}.md\:h-auto{height:auto}.md\:w-1\/3{width:33.333333%}.md\:w-2\/3{width:66.666667%}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.md\:py-28{padding-top:7rem;padding-bottom:7rem}.md\:text-left{text-align:left}.md\:text-5xl{font-size:3rem;line-height:1}}@media (min-width: 1024px){.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:text-6xl{font-size:3.75rem;line-height:1}}</style></head>
+<body class="font-inter antialiased bg-white text-slate-800 dark:bg-tech-dark dark:text-slate-200 transition-theme">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-tech-dark/90 backdrop-blur-md shadow-sm dark:shadow-slate-900/30 transition-theme">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center py-4 gap-4 md:gap-0">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                            <span class="font-mono">C</span>
+                        </div>
+                        <div>
+                            <span class="text-xl font-bold tracking-tight">CodeWithGanesh</span>
+                            <span class="hidden sm:inline-block text-primary font-mono text-sm ml-1">.com</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Modern Search Bar -->
+                <form class="relative w-full max-w-2xl mx-auto md:mx-0" onsubmit="event.preventDefault(); handleSearch();">
+                    <input type="text" id="searchInput" placeholder="Search videos, blog posts..." class="w-full pl-6 pr-12 py-4 rounded-2xl border border-gray-500/20 dark:border-gray-500/20 bg-[#1a2233] dark:bg-[#1a2233] text-blue-100 dark:text-blue-100 placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-primary transition text-lg" />
+                    <span class="absolute right-5 top-1/2 -translate-y-1/2 text-primary">
+                        <svg class="w-6 h-6" fill="none" stroke="red" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8" />
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        </svg>
+                    </span>
+                </form>
+                <!-- Navigation and toggles -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Home</a>
+                    <a href="#videos" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Videos</a>
+                    <a href="#blog" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Blog</a>
+                    <div class="relative" id="accountDropdown">
+                        <button id="accountBtn" class="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme flex items-center">
+                            <span id="accountBtnText">Account</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="accountDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-lg py-2 hidden transition-all transform origin-top-right border border-slate-200 dark:border-slate-700">
+                            <div id="loggedOutMenu">
+                                <a href="#login" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary dark:hover:text-primary">Login</a>
+                                <a href="#register" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary dark:hover:text-primary">Register</a>
+                            </div>
+                            <div id="loggedInMenu" class="hidden">
+                                <a href="admin_dashboard.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary dark:hover:text-primary">Dashboard</a>
+                                <a href="#profile" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary dark:hover:text-primary">Profile</a>
+                                <button id="logoutBtn" class="w-full text-left block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-primary dark:hover:text-primary">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://youtube.com" target="_blank" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-theme shadow-md hover:shadow-lg">
+                        Subscribe
+                    </a>
+                </nav>
+                
+                <!-- Mobile menu button and Dark mode toggle -->
+                <div class="flex items-center space-x-4 md:space-x-6">
+                    <button id="darkModeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-theme">
+                        <!-- Sun icon for dark mode -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700 dark:text-slate-300 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <!-- Moon icon for light mode -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700 dark:text-slate-300 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-theme">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col space-y-4 pt-2 pb-3">
+                    <a href="#" class="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Home</a>
+                    <a href="#videos" class="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Videos</a>
+                    <a href="#blog" class="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Blog</a>
+                    <div id="mobileAccountMenu">
+                        <div id="mobileLoggedOutMenu">
+                            <a href="#login" class="block text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Login</a>
+                            <a href="#register" class="block mt-4 text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Register</a>
+                        </div>
+                        <div id="mobileLoggedInMenu" class="hidden">
+                            <a href="admin_dashboard.html" class="block text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Dashboard</a>
+                            <a href="#profile" class="block mt-4 text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Profile</a>
+                            <button id="mobileLogoutBtn" class="block mt-4 text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Logout</button>
+                        </div>
+                    </div>
+                    <a href="https://youtube.com" target="_blank" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-theme text-center mt-2 shadow-md">
+                        Subscribe on YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="bg-white dark:bg-slate-900 transition-theme py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+            <form class="w-full max-w-xl" onsubmit="return performSearch()">
+                <div class="relative">
+                    <input id="search-input" type="text" placeholder="Search videos, blog posts..." class="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary shadow-md transition-theme placeholder-slate-400 dark:placeholder-slate-500" />
+                    <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-primary hover:text-primary-dark transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-br from-white to-slate-100 dark:from-tech-dark dark:to-slate-900 transition-theme">
+            <div class="absolute inset-0 blueprint-pattern"></div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28 relative z-10">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <div class="inline-flex items-center justify-center mb-6 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+                            <span class="text-primary font-medium text-sm">Welcome to CodeSpire</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
+                            Learn to <span class="text-primary">Code</span> with Ganesh
+                        </h1>
+                        <p class="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-xl mx-auto md:mx-0">
+                            Master programming with clear, practical tutorials that take you from beginner to professional developer.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                            <a href="https://youtube.com" target="_blank" class="bg-primary hover:bg-primary-dark text-white font-medium py-3 px-8 rounded-lg transition-theme text-lg shadow-md hover:shadow-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 011.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                                </svg>
+                                Subscribe on YouTube
+                            </a>
+                            <a href="#videos" class="bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium py-3 px-8 rounded-lg transition-theme text-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md">
+                                Browse Videos
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hidden md:block relative">
+                        <div class="absolute -top-10 -right-10 w-64 h-64 bg-tech-blue-light/20 dark:bg-tech-blue-light/10 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl"></div>
+                        
+                        <!-- Hero Image: Code Editor SVG -->
+                        <div class="relative bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-4 border border-slate-200 dark:border-slate-700 glow">
+                            <div class="flex items-center border-b border-slate-200 dark:border-slate-700 pb-2 mb-4">
+                                <div class="flex space-x-2">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                </div>
+                                <div class="mx-auto text-sm font-mono text-slate-500 dark:text-slate-400">index.js</div>
+                            </div>
+                            <div class="font-mono text-sm">
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">1</div>
+                                    <div><span class="text-purple-600 dark:text-purple-400">function</span> <span class="text-yellow-600 dark:text-yellow-300">codeWithGanesh</span><span class="text-slate-600 dark:text-slate-300">()</span> <span class="text-slate-600 dark:text-slate-300">{</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">2</div>
+                                    <div class="pl-4"><span class="text-purple-600 dark:text-purple-400">const</span> <span class="text-blue-600 dark:text-blue-400">skills</span> <span class="text-slate-600 dark:text-slate-300">=</span> <span class="text-slate-600 dark:text-slate-300">[</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">3</div>
+                                    <div class="pl-8"><span class="text-green-600 dark:text-green-400">'JavaScript'</span><span class="text-slate-600 dark:text-slate-300">,</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">4</div>
+                                    <div class="pl-8"><span class="text-green-600 dark:text-green-400">'React'</span><span class="text-slate-600 dark:text-slate-300">,</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">5</div>
+                                    <div class="pl-8"><span class="text-green-600 dark:text-green-400">'Node.js'</span><span class="text-slate-600 dark:text-slate-300">,</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">6</div>
+                                    <div class="pl-8"><span class="text-green-600 dark:text-green-400">'Python'</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">7</div>
+                                    <div class="pl-4"><span class="text-slate-600 dark:text-slate-300">];</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">8</div>
+                                    <div class="pl-4"></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">9</div>
+                                    <div class="pl-4"><span class="text-purple-600 dark:text-purple-400">return</span> <span class="text-slate-600 dark:text-slate-300">{</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">10</div>
+                                    <div class="pl-8"><span class="text-blue-600 dark:text-blue-400">learn</span><span class="text-slate-600 dark:text-slate-300">:</span> <span class="text-green-600 dark:text-green-400">'Coding Made Simple'</span><span class="text-slate-600 dark:text-slate-300">,</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">11</div>
+                                    <div class="pl-8"><span class="text-blue-600 dark:text-blue-400">skills</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">12</div>
+                                    <div class="pl-4"><span class="text-slate-600 dark:text-slate-300">};</span></div>
+                                </div>
+                                <div class="flex">
+                                    <div class="text-slate-400 dark:text-slate-500 mr-4 select-none">13</div>
+                                    <div><span class="text-slate-600 dark:text-slate-300">}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Wave decoration -->
+            <div class="absolute bottom-0 left-0 right-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-auto fill-current text-white dark:text-slate-900 transition-theme">
+                    <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,53.3C672,53,768,75,864,85.3C960,96,1056,96,1152,85.3C1248,75,1344,53,1392,42.7L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-white dark:bg-slate-900 transition-theme">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <div class="inline-flex items-center justify-center mb-4 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+                        <span class="text-primary font-medium text-sm">What You'll Learn</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Master In-Demand Skills</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-300">
+                        CodeSpire offers comprehensive tutorials across multiple programming domains to help you build a successful career in tech
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-100 dark:border-slate-700 hover:shadow-xl">
+                        <div class="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Web Development</h3>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6">
+                            Master HTML, CSS, JavaScript, React, and more with hands-on projects and real-world applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">HTML5</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">CSS3</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">JavaScript</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">React</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-100 dark:border-slate-700 hover:shadow-xl">
+                        <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Backend &amp; Databases</h3>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6">
+                            Learn server-side programming with Node.js, Python, and database management with SQL and NoSQL.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">Node.js</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">Python</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">MongoDB</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">SQL</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-100 dark:border-slate-700 hover:shadow-xl">
+                        <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">AI &amp; Machine Learning</h3>
+                        <p class="text-slate-600 dark:text-slate-300 mb-6">
+                            Explore artificial intelligence concepts, machine learning algorithms, and practical applications.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">TensorFlow</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">PyTorch</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">Data Science</span>
+                            <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Stats -->
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">150+</div>
+                        <div class="text-slate-600 dark:text-slate-400">Video Tutorials</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">50K+</div>
+                        <div class="text-slate-600 dark:text-slate-400">YouTube Subscribers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">25+</div>
+                        <div class="text-slate-600 dark:text-slate-400">Complete Courses</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2">4.8</div>
+                        <div class="text-slate-600 dark:text-slate-400">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section id="videos" class="py-20 bg-slate-50 dark:bg-slate-800/50 transition-theme">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <div class="inline-flex items-center justify-center mb-4 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+                        <span class="text-primary font-medium text-sm">Latest Videos</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Recent Tutorials</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-300">
+                        Check out our most recent tutorials and coding sessions to level up your skills
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="video-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden transition-theme border border-slate-100 dark:border-slate-700">
+                        <div class="relative">
+                            <div class="aspect-w-16 aspect-h-9 bg-slate-200 dark:bg-slate-700">
+                                <div class="w-full h-0 pb-[56.25%] relative bg-slate-200 dark:bg-slate-700">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary play-button" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-md">
+                                15:42
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">
+                                Building a Responsive Dashboard with React and Tailwind CSS
+                            </h3>
+                            <div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>2 days ago</span>
+                                <span class="mx-2">•</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <span>4.2K views</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-full text-xs font-medium text-blue-700 dark:text-blue-300">React</span>
+                                <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="video-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden transition-theme border border-slate-100 dark:border-slate-700">
+                        <div class="relative">
+                            <div class="aspect-w-16 aspect-h-9 bg-slate-200 dark:bg-slate-700">
+                                <div class="w-full h-0 pb-[56.25%] relative bg-slate-200 dark:bg-slate-700">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary play-button" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-md">
+                                22:17
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">
+                                Python for Beginners: Building Your First API with FastAPI
+                            </h3>
+                            <div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>1 week ago</span>
+                                <span class="mx-2">•</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <span>7.8K views</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full text-xs font-medium text-green-700 dark:text-green-300">Python</span>
+                                <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3 -->
+                    <div class="video-card bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden transition-theme border border-slate-100 dark:border-slate-700">
+                        <div class="relative">
+                            <div class="aspect-w-16 aspect-h-9 bg-slate-200 dark:bg-slate-700">
+                                <div class="w-full h-0 pb-[56.25%] relative bg-slate-200 dark:bg-slate-700">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-primary play-button" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute top-3 right-3 bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-md">
+                                18:05
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">
+                                JavaScript Fundamentals: Understanding Promises and Async/Await
+                            </h3>
+                            <div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>2 weeks ago</span>
+                                <span class="mx-2">•</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <span>12.5K views</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-yellow-100 dark:bg-yellow-900/30 px-3 py-1 rounded-full text-xs font-medium text-yellow-700 dark:text-yellow-300">JavaScript</span>
+                                <span class="bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded-full text-xs font-medium text-slate-700 dark:text-slate-300">Async</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-flex items-center text-primary hover:text-primary-dark font-medium transition-theme group">
+                        View All Videos
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-20 bg-white dark:bg-slate-900 transition-theme">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <div class="inline-flex items-center justify-center mb-4 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+                        <span class="text-primary font-medium text-sm">Latest Articles</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">From Our Blog</h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-300">
+                        Dive deeper into coding concepts with our detailed blog posts
+                    </p>
+                </div>
+                
+                <!-- Blog Categories -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium shadow-sm">All Posts</button>
+                    <button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-theme shadow-sm border border-slate-200 dark:border-slate-700">Web Development</button>
+                    <button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-theme shadow-sm border border-slate-200 dark:border-slate-700">Backend</button>
+                    <button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-theme shadow-sm border border-slate-200 dark:border-slate-700">AI &amp; ML</button>
+                    <button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-theme shadow-sm border border-slate-200 dark:border-slate-700">Career Tips</button>
+                </div>
+                
+                <!-- Blog Posts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Blog Post 1 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden transition-theme border border-slate-100 dark:border-slate-700 hover:shadow-xl">
+                        <div class="md:flex h-full">
+                            <div class="md:w-1/3 bg-slate-200 dark:bg-slate-700 md:h-auto h-48">
+                                <div class="h-full w-full relative">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col">
+                                <div class="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2">
+                                    <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-md text-xs font-medium">Web Development</span>
+                                    <span class="mx-2">•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <a href="#" class="block mt-1 flex-grow">
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                        10 React Hooks You Should Know in 2023
+                                    </h3>
+                                    <p class="text-slate-600 dark:text-slate-400">
+                                        Explore the most useful React hooks that will improve your code quality and development efficiency.
+                                    </p>
+                                </a>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="h-8 w-8 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+                                        <span class="ml-2 text-sm text-slate-600 dark:text-slate-400">Ganesh</span>
+                                    </div>
+                                    <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center transition-theme text-sm group">
+                                        Read More
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Blog Post 2 -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg overflow-hidden transition-theme border border-slate-100 dark:border-slate-700 hover:shadow-xl">
+                        <div class="md:flex h-full">
+                            <div class="md:w-1/3 bg-slate-200 dark:bg-slate-700 md:h-auto h-48">
+                                <div class="h-full w-full relative">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-slate-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6 md:w-2/3 flex flex-col">
+                                <div class="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-2">
+                                    <span class="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-2 py-1 rounded-md text-xs font-medium">AI &amp; ML</span>
+                                    <span class="mx-2">•</span>
+                                    <span>8 min read</span>
+                                </div>
+                                <a href="#" class="block mt-1 flex-grow">
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                                        Getting Started with TensorFlow: A Beginner's Guide
+                                    </h3>
+                                    <p class="text-slate-600 dark:text-slate-400">
+                                        Learn the basics of TensorFlow and how to build your first machine learning model from scratch.
+                                    </p>
+                                </a>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="h-8 w-8 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+                                        <span class="ml-2 text-sm text-slate-600 dark:text-slate-400">Ganesh</span>
+                                    </div>
+                                    <a href="#" class="text-primary hover:text-primary-dark font-medium inline-flex items-center transition-theme text-sm group">
+                                        Read More
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="inline-flex items-center text-primary hover:text-primary-dark font-medium transition-theme group">
+                        View All Articles
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-20 bg-gradient-to-br from-tech-blue to-tech-blue-light text-white relative overflow-hidden">
+            <div class="absolute inset-0 blueprint-pattern opacity-10"></div>
+            <!-- Decorative elements -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3"></div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl mx-auto text-center">
+                    <div class="inline-flex items-center justify-center mb-4 bg-white/10 px-4 py-2 rounded-full">
+                        <span class="text-white font-medium text-sm">Stay Updated</span>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-6">Join Our Newsletter</h2>
+                    <p class="text-lg text-blue-100 mb-8">
+                        Get weekly coding tips, tutorials, and exclusive content directly in your inbox
+                    </p>
+                    
+                    <form id="newsletterForm" class="max-w-md mx-auto bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                            <div class="flex-1">
+                                <input type="text" placeholder="Your name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-theme" required="">
+                            </div>
+                            <div class="flex-1">
+                                <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent transition-theme" required="">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-white hover:bg-blue-50 text-tech-blue font-medium py-3 px-6 rounded-lg transition-theme shadow-lg hover:shadow-xl">
+                            Subscribe
+                        </button>
+                        <p class="mt-4 text-sm text-blue-200">
+                            We respect your privacy. Unsubscribe at any time.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login" class="py-20 bg-white dark:bg-slate-900 transition-theme">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-200 dark:border-slate-700">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Login</h2>
+                    <form id="login-form">
+
+                        <div class="mb-4">
+                            <label class="block text-slate-700 dark:text-slate-300 mb-2" for="loginEmail">Email</label>
+                            <input id="loginEmail" type="email" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-theme" placeholder="you@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-slate-700 dark:text-slate-300 mb-2" for="loginPassword">Password</label>
+                            <input id="loginPassword" type="password" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-theme" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-theme shadow-md hover:shadow-lg">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register" class="py-20 bg-white dark:bg-slate-900 transition-theme">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-200 dark:border-slate-700">
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Register</h2>
+                    <form id="register-form">
+
+                        <div class="mb-4">
+                            <label class="block text-slate-700 dark:text-slate-300 mb-2" for="registerName">Name</label>
+                            <input id="registerName" type="text" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-theme" placeholder="Your name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-slate-700 dark:text-slate-300 mb-2" for="registerEmail">Email</label>
+                            <input id="registerEmail" type="email" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-theme" placeholder="you@example.com" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-slate-700 dark:text-slate-300 mb-2" for="registerPassword">Password</label>
+                            <input id="registerPassword" type="password" class="w-full px-4 py-3 rounded-lg bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-theme" placeholder="********" required>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-theme shadow-md hover:shadow-lg">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <!-- Logo and About -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                            <span class="font-mono">C</span>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight">CodeWithGanesh</span>
+                    </div>
+                    <p class="text-slate-400 mb-6">
+                        Learn to code with clear, practical tutorials that take you from beginner to professional developer.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-theme p-2 bg-slate-800 rounded-full hover:bg-slate-700">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 011.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-theme p-2 bg-slate-800 rounded-full hover:bg-slate-700">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-theme p-2 bg-slate-800 rounded-full hover:bg-slate-700">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-theme p-2 bg-slate-800 rounded-full hover:bg-slate-700">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+                                <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Home</a></li>
+                        <li><a href="#videos" class="text-slate-400 hover:text-white transition-theme">Videos</a></li>
+                        <li><a href="#blog" class="text-slate-400 hover:text-white transition-theme">Blog</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">About</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Resources</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Free Tutorials</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Code Snippets</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Cheat Sheets</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">Community</a></li>
+                        <li><a href="#" class="text-slate-400 hover:text-white transition-theme">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                
+                <!-- Subscribe -->
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Subscribe</h3>
+                    <p class="text-slate-400 mb-6">
+                        Subscribe to our YouTube channel for the latest tutorials
+                    </p>
+                    <a href="https://youtube.com" target="_blank" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-theme shadow-md hover:shadow-lg">
+                        Subscribe on YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const htmlEl = document.documentElement;
+        const darkToggle = document.getElementById('darkModeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        const accountBtn = document.getElementById('accountBtn');
+        const accountMenu = document.getElementById('accountDropdownMenu');
+        const loggedOutMenu = document.getElementById('loggedOutMenu');
+        const loggedInMenu = document.getElementById('loggedInMenu');
+        const mobileLoggedOutMenu = document.getElementById('mobileLoggedOutMenu');
+        const mobileLoggedInMenu = document.getElementById('mobileLoggedInMenu');
+        const accountBtnText = document.getElementById('accountBtnText');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        let isLoggedIn = false;
+        let isAdmin = false;
+        let currentUser = null;
+
+        function updateAuthUI() {
+            if (isLoggedIn) {
+                loggedOutMenu?.classList.add('hidden');
+                loggedInMenu?.classList.remove('hidden');
+                mobileLoggedOutMenu?.classList.add('hidden');
+                mobileLoggedInMenu?.classList.remove('hidden');
+                accountBtnText.textContent = currentUser.name;
+            } else {
+                loggedOutMenu?.classList.remove('hidden');
+                loggedInMenu?.classList.add('hidden');
+                mobileLoggedOutMenu?.classList.remove('hidden');
+                mobileLoggedInMenu?.classList.add('hidden');
+                accountBtnText.textContent = 'Account';
+            }
+        }
+
+        function login(email, password) {
+            if (email === 'admin@codewithganesh.com' && password === 'password') {
+                isLoggedIn = true;
+                isAdmin = true;
+                currentUser = { name: 'Admin User', email };
+                updateAuthUI();
+                window.location.href = 'admin_dashboard.html';
+                return true;
+            } else if (email === 'user@example.com' && password === 'password') {
+                isLoggedIn = true;
+                isAdmin = false;
+                currentUser = { name: 'Regular User', email };
+                updateAuthUI();
+                return true;
+            }
+            alert('Invalid credentials');
+            return false;
+        }
+
+        function register(name, email, password) {
+            isLoggedIn = true;
+            isAdmin = false;
+            currentUser = { name, email };
+            updateAuthUI();
+            return true;
+        }
+
+        function logout() {
+            isLoggedIn = false;
+            isAdmin = false;
+            currentUser = null;
+            updateAuthUI();
+        }
+
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        }
+
+        darkToggle?.addEventListener('click', () => {
+            const newTheme = htmlEl.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu?.classList.toggle('hidden');
+        });
+
+
+        accountBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            accountMenu?.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!accountMenu?.contains(e.target) && !accountBtn?.contains(e.target)) {
+                accountMenu?.classList.add('hidden');
+            }
+        });
+
+        logoutBtn?.addEventListener('click', () => logout());
+        mobileLogoutBtn?.addEventListener('click', () => logout());
+
+        loginForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            login(email, password);
+        });
+
+        registerForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            register(name, email, password);
+        });
+
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            alert(`Searching for: ${searchInput.value}`);
+            return false;
+        }
+
+        function handleSearch() {
+            const value = document.getElementById('searchInput').value;
+            alert('Search for: ' + value);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CodeWithGanesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Roboto Mono', 'monospace'],
+                    },
+                    colors: {
+                        'primary': '#FF0000',
+                        'primary-dark': '#cc0000',
+                        'tech-blue': '#1E3A8A',
+                        'tech-blue-light': '#3B82F6',
+                        'tech-dark': '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        .transition-theme {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Blueprint pattern background from version_2.html */
+        .blueprint-pattern {
+            background-color: rgba(255, 255, 255, 0.97);
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: -1px -1px;
+        }
+        .dark .blueprint-pattern {
+            background-color: rgba(15, 23, 42, 0.97);
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="font-inter antialiased bg-white text-slate-800 dark:bg-tech-dark dark:text-slate-200 transition-theme min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-tech-dark/90 backdrop-blur-md shadow-sm dark:shadow-slate-900/30 transition-theme">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                    <span class="font-mono">C</span>
+                </div>
+                <span class="text-lg font-bold tracking-tight text-slate-800 dark:text-white">CodeWithGanesh</span>
+            </div>
+            <button id="darkModeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-theme">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700 dark:text-slate-300 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700 dark:text-slate-300 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-10 relative">
+        <div class="absolute inset-0 blueprint-pattern pointer-events-none -z-10"></div>
+        <div class="flex flex-col md:flex-row gap-8 relative z-10">
+            <!-- Sidebar -->
+            <aside class="w-full md:w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8 md:mb-0 transition-theme border border-slate-100 dark:border-slate-700">
+                <h2 class="text-xl font-bold mb-6 dark:text-white">Admin Dashboard</h2>
+                <nav class="space-y-2">
+                    <button class="block w-full text-left px-4 py-2 rounded-lg bg-primary text-white font-medium sidebar-link transition-theme" data-section="overview">Overview</button>
+                    <button class="block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 sidebar-link transition-theme" data-section="videos">Videos</button>
+                    <button class="block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 sidebar-link transition-theme" data-section="blog">Blog Posts</button>
+                    <button class="block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 sidebar-link transition-theme" data-section="subscribers">Newsletter Subscribers</button>
+                    <button class="block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 sidebar-link transition-theme" data-section="users">Users</button>
+                </nav>
+            </aside>
+            <!-- Main Dashboard Area -->
+            <div class="flex-1">
+                <h1 class="text-2xl font-bold mb-8 text-slate-900 dark:text-white">Dashboard Overview</h1>
+                <div id="dashboard-stats" class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+                    <!-- Stats will be rendered here -->
+                </div>
+                <!-- Section Content -->
+                <div id="section-content" class="mt-10">
+                    <!-- Content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 CodeWithGanesh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle logic
+        const htmlEl = document.documentElement;
+        const darkToggle = document.getElementById('darkModeToggle');
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlEl.classList.add('dark');
+            } else {
+                htmlEl.classList.remove('dark');
+            }
+        }
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        }
+        darkToggle?.addEventListener('click', () => {
+            const newTheme = htmlEl.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Admin dashboard logic from version_1.html
+        // Authentication state
+        let isLoggedIn = true; // Assume admin is logged in for dashboard
+        let isAdmin = true;
+        let currentUser = { name: 'Admin', email: 'admin@codewithganesh.com' };
+
+        // Sample data
+        let videos = [
+            { id: 1, title: "Getting Started with React", views: 15000, date: "2 weeks ago" },
+            { id: 2, title: "Mastering JavaScript", views: 12000, date: "1 month ago" },
+            { id: 3, title: "Intro to Python", views: 9000, date: "3 weeks ago" }
+        ];
+        let blogPosts = [
+            { id: 1, title: "React vs Vue: Which to Choose?", views: 567, date: "1 week ago" },
+            { id: 2, title: "10 JavaScript Tricks", views: 320, date: "2 weeks ago" }
+        ];
+        let visitors = 2345;
+        // Section data
+        let subscribers = [
+            { id: 1, email: 'user1@example.com', date: '2025-06-01' },
+            { id: 2, email: 'user2@example.com', date: '2025-06-10' }
+        ];
+        let users = [
+            { id: 1, name: 'Admin', email: 'admin@codewithganesh.com', role: 'admin' },
+            { id: 2, name: 'John Doe', email: 'john@example.com', role: 'user' }
+        ];
+
+        // Render dashboard stats
+        function renderStats() {
+            const stats = [
+                { label: 'Video Views', value: videos.reduce((a, v) => a + v.views, 0) },
+                { label: 'Blog Post Views', value: blogPosts.reduce((a, b) => a + b.views, 0) },
+                { label: 'Visitor Count', value: visitors }
+            ];
+            const statsContainer = document.getElementById('dashboard-stats');
+            statsContainer.innerHTML = stats.map(stat => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 transition-theme border border-slate-100 dark:border-slate-700 text-center">
+                    <h2 class="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-2">${stat.label}</h2>
+                    <p class="text-3xl font-bold text-primary">${stat.value.toLocaleString()}</p>
+                </div>
+            `).join('');
+        }
+
+        // Render admin actions (delete video/blog)
+        function renderAdminActions() {
+            const actionsContainer = document.getElementById('admin-actions');
+            let html = '';
+            html += '<div><h3 class="font-bold mb-2 text-slate-800 dark:text-white">Videos</h3>';
+            html += '<ul>' + videos.map(video => `
+                <li class="flex items-center justify-between mb-2 bg-white dark:bg-slate-800 rounded-xl p-2 border border-slate-100 dark:border-slate-700 transition-theme">
+                    <span>${video.title}</span>
+                    <button onclick=\"deleteItem('video', ${video.id})\" class="text-red-600 hover:underline">Delete</button>
+                </li>
+            `).join('') + '</ul></div>';
+            html += '<div><h3 class="font-bold mb-2 text-slate-800 dark:text-white">Blog Posts</h3>';
+            html += '<ul>' + blogPosts.map(post => `
+                <li class="flex items-center justify-between mb-2 bg-white dark:bg-slate-800 rounded-xl p-2 border border-slate-100 dark:border-slate-700 transition-theme">
+                    <span>${post.title}</span>
+                    <button onclick=\"deleteItem('blog', ${post.id})\" class="text-red-600 hover:underline">Delete</button>
+                </li>
+            `).join('') + '</ul></div>';
+            actionsContainer.innerHTML = html;
+        }
+
+        // Delete item (video or blog)
+        function deleteItem(type, id) {
+            if (type === 'video') {
+                videos = videos.filter(v => v.id !== id);
+            } else if (type === 'blog') {
+                blogPosts = blogPosts.filter(b => b.id !== id);
+            }
+            renderStats();
+            renderAdminActions();
+        }
+
+        // Render section content
+        function renderSection(section) {
+            const container = document.getElementById('section-content');
+            let html = '';
+            if (section === 'overview') {
+                html = '';
+            } else if (section === 'videos') {
+                html = `<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                    ${videos.map(video => `
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 transition-theme flex flex-col justify-between min-h-[160px]">
+                            <div>
+                                <div class='font-semibold text-slate-800 dark:text-slate-200 text-lg mb-2'>${video.title}</div>
+                                <div class='text-sm text-slate-500 dark:text-slate-400 mb-2'>Views: ${video.views.toLocaleString()} | ${video.date}</div>
+                            </div>
+                            <button onclick="deleteItem('video', ${video.id})" class='text-red-600 hover:underline mt-4 self-end'>Delete</button>
+                        </div>
+                    `).join('')}
+                </div>`;
+            } else if (section === 'blog') {
+                html = `<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                    ${blogPosts.map(post => `
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 transition-theme flex flex-col justify-between min-h-[160px]">
+                            <div>
+                                <div class='font-semibold text-slate-800 dark:text-slate-200 text-lg mb-2'>${post.title}</div>
+                                <div class='text-sm text-slate-500 dark:text-slate-400 mb-2'>Views: ${post.views.toLocaleString()} | ${post.date}</div>
+                            </div>
+                            <button onclick="deleteItem('blog', ${post.id})" class='text-red-600 hover:underline mt-4 self-end'>Delete</button>
+                        </div>
+                    `).join('')}
+                </div>`;
+            } else if (section === 'subscribers') {
+                html = `<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                    ${subscribers.map(sub => `
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 transition-theme flex flex-col justify-between min-h-[120px]">
+                            <div>
+                                <div class='font-semibold text-slate-800 dark:text-slate-200 text-lg mb-2'>${sub.email}</div>
+                                <div class='text-sm text-slate-500 dark:text-slate-400 mb-2'>Subscribed: ${sub.date}</div>
+                            </div>
+                            <button onclick="deleteSubscriber(${sub.id})" class='text-red-600 hover:underline mt-4 self-end'>Delete</button>
+                        </div>
+                    `).join('')}
+                </div>`;
+            } else if (section === 'users') {
+                html = `<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+                    ${users.map(user => `
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 transition-theme flex flex-col justify-between min-h-[120px]">
+                            <div>
+                                <div class='font-semibold text-slate-800 dark:text-slate-200 text-lg mb-2'>${user.name}</div>
+                                <div class='text-sm text-slate-500 dark:text-slate-400 mb-2'>${user.email} | Role: ${user.role}</div>
+                            </div>
+                            <button onclick="deleteUser(${user.id})" class='text-red-600 hover:underline mt-4 self-end'>Delete</button>
+                        </div>
+                    `).join('')}
+                </div>`;
+            }
+            container.innerHTML = html;
+        }
+        // Sidebar section switching
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                sidebarLinks.forEach(l => l.classList.remove('bg-primary', 'text-white'));
+                this.classList.add('bg-primary', 'text-white');
+                renderSection(this.dataset.section);
+            });
+        });
+        // Delete functions
+        function deleteSubscriber(id) {
+            subscribers = subscribers.filter(s => s.id !== id);
+            renderSection('subscribers');
+        }
+        function deleteUser(id) {
+            users = users.filter(u => u.id !== id);
+            renderSection('users');
+        }
+        // Initial render
+        renderStats();
+        renderAdminActions();
+        renderSection('overview');
+    </script>
+</body>
+</html>
