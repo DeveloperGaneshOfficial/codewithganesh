@@ -27,6 +27,7 @@ const sections = [
 	{ key: 'overview', label: 'Overview' },
 	{ key: 'videos', label: 'Videos' },
 	{ key: 'blog', label: 'Blog Posts' },
+	{ key: 'write-blog', label: 'Write Blog' }, // New menu link
 	{ key: 'subscribers', label: 'Newsletter Subscribers' },
 	{ key: 'users', label: 'Users' },
 ];
@@ -49,12 +50,6 @@ export default function AdminDashboard() {
 	const [users, setUsers] = useState(initialUsers);
 	// Blog editor state
 	const [blogEditorData, setBlogEditorData] = useState<any>(null);
-	const [showBlogEditor, setShowBlogEditor] = useState(false);
-	const [blogTitle, setBlogTitle] = useState("");
-	const [coverImage, setCoverImage] = useState<File | null>(null);
-	const [saving, setSaving] = useState(false);
-	const [saveMessage, setSaveMessage] = useState<string | null>(null);
-	const [editorContent, setEditorContent] = useState<any>(null);
 
 	useEffect(() => {
 		const checkAuth = async () => {
@@ -107,41 +102,10 @@ export default function AdminDashboard() {
 	const deleteBlog = (id: number) => setBlogPosts(blogPosts.filter(b => b.id !== id));
 	const deleteSubscriber = (id: number) => setSubscribers(subscribers.filter(s => s.id !== id));
 	const deleteUser = (id: number) => setUsers(users.filter(u => u.id !== id));
-	
-
-	// Blog save handler
-	const handleSaveBlog = async () => {
-		setSaving(true);
-		setSaveMessage(null);
-		let imageUrl = null;
-		if (coverImage) {
-			const { data, error } = await supabase.storage.from('blog-images').upload(`cover-${Date.now()}`, coverImage);
-			if (error) {
-				setSaveMessage('Image upload failed');
-				setSaving(false);
-				return;
-			}
-			imageUrl = data?.path ? supabase.storage.from('blog-images').getPublicUrl(data.path).data.publicUrl : null;
-		}
-		const { error: insertError } = await supabase.from('blogs').insert([
-			{
-				title: blogTitle,
-				content: editorContent,
-				cover_image: imageUrl,
-				created_at: new Date().toISOString(),
-			},
-		]);
-		if (insertError) {
-			setSaveMessage('Failed to save blog');
-		} else {
-			setSaveMessage('Blog saved successfully!');
-			setShowBlogEditor(false);
-			setBlogTitle("");
-			setCoverImage(null);
-			setEditorContent(null);
-			// Optionally refresh blog list here
-		}
-		setSaving(false);
+	const handleBlogSave = (data: any) => {
+		setBlogEditorData(data);
+		// TODO: Save blog post to Supabase here
+		// Example: supabase.from('blogs').insert([{ content: data }])
 	};
 
 	// Section content
@@ -163,40 +127,6 @@ export default function AdminDashboard() {
 	} else if (section === 'blog') {
 		sectionContent = (
 			<div>
-				<button
-					className="mb-6 px-4 py-2 bg-primary text-white rounded hover:bg-blue-700"
-					onClick={() => setShowBlogEditor(true)}
-				>
-					+ Create Blog
-				</button>
-				{showBlogEditor && (
-					<div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 mb-8">
-						<div className="mb-4">
-							<input
-								type="text"
-								className="w-full p-2 border rounded mb-2"
-								placeholder="Blog Title"
-								value={blogTitle}
-								onChange={e => setBlogTitle(e.target.value)}
-							/>
-							<input
-								type="file"
-								accept="image/*"
-								className="mb-2"
-								onChange={e => setCoverImage(e.target.files?.[0] || null)}
-							/>
-						</div>
-						<BlogEditor onSave={setEditorContent} />
-						<button
-							className="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-							onClick={handleSaveBlog}
-							disabled={saving}
-						>
-							{saving ? 'Saving...' : 'Save Blog'}
-						</button>
-						{saveMessage && <div className="mt-2 text-sm text-center text-red-500">{saveMessage}</div>}
-					</div>
-				)}
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{blogPosts.map(post => (
 						<div key={post.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-100 dark:border-slate-700 transition-theme flex flex-col justify-between min-h-[160px]">
@@ -210,6 +140,12 @@ export default function AdminDashboard() {
 				</div>
 			</div>
 		);
+	} else if (section === 'write-blog') {
+		// Route to /admin/write-blog page
+		if (typeof window !== 'undefined') {
+			window.location.href = '/admin/write-blog';
+		}
+		sectionContent = <div className="text-center py-10">Redirecting to blog editor...</div>;
 	} else if (section === 'subscribers') {
 		sectionContent = (
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
