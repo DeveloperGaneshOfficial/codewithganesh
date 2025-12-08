@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import Fuse from 'fuse.js'
+import type { IFuseOptions } from 'fuse.js'
 import { getBlogPosts } from '@/lib/mdx'
 
 type SearchDocument = {
@@ -47,7 +48,7 @@ const STATIC_PAGES: SearchDocument[] = [
   },
 ]
 
-const FUSE_OPTIONS: Fuse.IFuseOptions<SearchDocument> = {
+const FUSE_OPTIONS: IFuseOptions<SearchDocument> = {
   includeScore: true,
   threshold: 0.35,
   ignoreLocation: true,

@@ -55,7 +55,7 @@ export async function GET(request: Request) {
     .map((value) => value.trim().toLowerCase())
     .filter((value): value is VideoDuration => ALLOWED_DURATIONS.has(value as VideoDuration))
 
-  const durations = requestedDurations.length > 0 ? requestedDurations : ['long']
+  const durations = requestedDurations.length > 0 ? requestedDurations : (['long'] as VideoDuration[])
 
   const incomingTokenState = decodeTokenState(rawPageToken)
   const outgoingTokenState: TokenState = { ...incomingTokenState }
