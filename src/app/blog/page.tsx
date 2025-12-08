@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { getBlogPosts } from '@/lib/mdx';
 import { compareDesc } from 'date-fns';
 import BlogListGrid from '@/components/BlogListGrid';
+import { genPageMetadata } from '@/app/seo'
+
+export const metadata = genPageMetadata({ title: 'Blog' })
 
 export const revalidate = 0; // Dynamic route
 

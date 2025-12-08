@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getBlogPosts, getPostBySlug } from '@/lib/mdx'
+import siteMetadata from '@/data/siteMetadata'
+import { genPageMetadata } from '@/app/seo'
 import { format, parseISO } from 'date-fns'
 import { ArrowRight } from 'lucide-react'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -22,10 +24,17 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     const post = await getPostBySlug(slug);
     if (!post) return { title: 'Post Not Found' };
 
-    return {
-        title: `${post.title} - CodeWithGanesh`,
+    return genPageMetadata({
+        title: post.title,
         description: post.summary,
-    };
+        image: post.images?.[0] || siteMetadata.socialBanner,
+        alternates: {
+            canonical: './',
+            types: {
+                'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`,
+            },
+        },
+    })
 }
 
 export default async function BlogPostPage(props: { params: Promise<{ slug: string }> }) {
@@ -145,28 +154,28 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                                                             {suggested.summary}
                                                         </p>
                                                     )}
-                                                        <div className="mt-auto pt-6 flex items-center justify-between gap-4">
-                                                            <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-400 dark:text-slate-400">
-                                                                {suggested.tags && suggested.tags.length > 0
-                                                                    ? suggested.tags.slice(0, 2).map((tag) => (
-                                                                          <span
-                                                                              key={tag}
-                                                                              className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-500 transition group-hover:border-primary/40 group-hover:text-primary dark:border-slate-700/70 dark:bg-slate-900/50 dark:text-slate-300 dark:group-hover:border-primary/40 dark:group-hover:text-primary"
-                                                                          >
-                                                                              {tag}
-                                                                          </span>
-                                                                      ))
-                                                                    : (
-                                                                          <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-500 dark:border-slate-700/70 dark:bg-slate-900/50 dark:text-slate-400">
-                                                                              More to read
-                                                                          </span>
-                                                                      )}
-                                                            </div>
-                                                            <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 transition group-hover:border-primary/40 group-hover:bg-primary/10 group-hover:text-primary dark:border-slate-700/70 dark:bg-slate-900/60 dark:text-slate-200 dark:group-hover:border-primary/40 dark:group-hover:text-primary">
-                                                                Read
-                                                                <ArrowRight className="h-3 w-3" aria-hidden="true" />
-                                                            </span>
+                                                    <div className="mt-auto pt-6 flex items-center justify-between gap-4">
+                                                        <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-400 dark:text-slate-400">
+                                                            {suggested.tags && suggested.tags.length > 0
+                                                                ? suggested.tags.slice(0, 2).map((tag) => (
+                                                                    <span
+                                                                        key={tag}
+                                                                        className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-500 transition group-hover:border-primary/40 group-hover:text-primary dark:border-slate-700/70 dark:bg-slate-900/50 dark:text-slate-300 dark:group-hover:border-primary/40 dark:group-hover:text-primary"
+                                                                    >
+                                                                        {tag}
+                                                                    </span>
+                                                                ))
+                                                                : (
+                                                                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] text-slate-500 dark:border-slate-700/70 dark:bg-slate-900/50 dark:text-slate-400">
+                                                                        More to read
+                                                                    </span>
+                                                                )}
                                                         </div>
+                                                        <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600 transition group-hover:border-primary/40 group-hover:bg-primary/10 group-hover:text-primary dark:border-slate-700/70 dark:bg-slate-900/60 dark:text-slate-200 dark:group-hover:border-primary/40 dark:group-hover:text-primary">
+                                                            Read
+                                                            <ArrowRight className="h-3 w-3" aria-hidden="true" />
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </Link>
                                         ))}

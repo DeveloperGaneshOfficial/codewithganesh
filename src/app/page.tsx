@@ -4,6 +4,9 @@ import Hero from '@/components/Hero'
 import Features from '@/components/Features'
 import VideosSection from '@/components/VideosSection'
 import BlogSection from '@/components/BlogSection'
+import { genPageMetadata } from '@/app/seo'
+
+export const metadata = genPageMetadata({ title: 'CodeWithGanesh - Learn Coding with CodeSpire' })
 
 export default function HomePage() {
   return (
