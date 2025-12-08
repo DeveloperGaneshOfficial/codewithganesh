@@ -17,6 +17,12 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 
 import { components } from '@/components/MDXComponents'
 
+export type TocItem = {
+    value: string
+    url: string
+    depth: number
+}
+
 const root = process.cwd()
 const blogDir = path.join(root, 'content/blog')
 
@@ -41,6 +47,13 @@ export type BlogPost = {
     tags?: string[]
     images?: string[]
     draft?: boolean
+    lastmod?: string
+    authors?: string[]
+    layout?: string
+    bibliography?: string
+    canonicalUrl?: string
+    category?: string
+    toc: TocItem[]
     body: any // MDX content
 }
 
@@ -60,6 +73,13 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
                 tags: data.tags,
                 images: data.images,
                 draft: data.draft,
+                lastmod: data.lastmod ? new Date(data.lastmod).toISOString() : undefined,
+                authors: data.authors,
+                layout: data.layout,
+                bibliography: data.bibliography,
+                canonicalUrl: data.canonicalUrl,
+                category: data.category,
+                toc: [],
                 body: null // Body not needed for listing
             }
         })
@@ -88,14 +108,14 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 
         // Calculate TOC
         const { extractTocHeadings } = await import('pliny/mdx-plugins/index.js')
-        const toc = extractTocHeadings(content)
+        const toc = await extractTocHeadings(content)
 
         // Compile MDX
         const { content: mdxContent } = await compileMDX({
             source: content,
             components: {
                 ...components,
-                TOCInline: (props: any) => components.TOCInline({ ...props, toc: props.toc || (Array.isArray(toc) ? toc : []) }),
+                TOCInline: (props: any) => components.TOCInline({ ...props, toc: Array.isArray(toc) ? toc : [] }),
             },
             options: {
                 parseFrontmatter: false,
@@ -140,9 +160,12 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
             tags: data.tags,
             images: data.images,
             draft: data.draft,
+            category: data.category,
+            toc: Array.isArray(toc) ? toc : [],
             body: mdxContent
         }
     } catch (error) {
+        console.error(`Error compiling MDX for slug "${slug}":`, error)
         return null
     }
 }

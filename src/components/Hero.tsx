@@ -2,12 +2,9 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-white to-slate-100 dark:from-tech-dark dark:to-tech-dark transition-theme">
       <div className="absolute inset-0 blueprint-pattern" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28 relative z-10">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-28 relative z-10">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-center md:text-left">
-            <div className="inline-flex items-center justify-center mb-6 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
-              <span className="text-primary font-medium text-sm">Welcome to CodeSpire</span>
-            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight">
               Learn to <span className="text-primary">Code</span> with Ganesh
             </h1>

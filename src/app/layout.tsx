@@ -1,10 +1,9 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
-
-const inter = Inter({ subsets: ['latin'] })
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 
 export const metadata = {
   title: 'CodeWithGanesh - Learn Coding with CodeSpire',
@@ -12,7 +11,11 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable}`}
+    >
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function() {
@@ -26,9 +29,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           })();`}
         </Script>
       </head>
-      <body className={`font-inter antialiased bg-white text-slate-800 dark:bg-tech-dark dark:text-slate-200 transition-theme ${inter.className}`}>
+      <body className="antialiased bg-white text-slate-800 transition-theme dark:bg-tech-dark dark:text-slate-200">
         <Header />
-        {children}
+        <div className="relative isolate">
+          <div className="pointer-events-none absolute inset-0 -z-10 blueprint-pattern dark:hidden" aria-hidden="true" />
+          <div className="relative z-10">
+            {children}
+          </div>
+        </div>
         <Footer />
       </body>
     </html>
