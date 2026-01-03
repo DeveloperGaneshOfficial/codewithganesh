@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "convert:youtube": "node scripts/convert-youtube-csv.mjs",
+    "generate:video-mdx": "node scripts/generate-video-mdx.mjs",
     "start": "next start",
     "lint": "next lint"
   },

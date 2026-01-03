@@ -61,11 +61,13 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
 
     return (
         <>
-            <main className="min-h-screen transition-theme pt-14 pb-20">
+            <main className="min-h-screen transition-theme pb-20">
                 <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="lg:flex lg:items-start lg:gap-12">
                         <div className="lg:flex-1 lg:min-w-0">
+                            <div id="post-top" className="scroll-mt-28" />
                             <Breadcrumbs
+                                sticky
                                 items={[
                                     { label: 'Home', href: '/' },
                                     {
@@ -184,7 +186,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                             )}
                         </div>
 
-                        <aside className="hidden lg:flex lg:ml-auto lg:w-[260px] lg:pl-4 lg:border-l lg:border-slate-200/70 lg:sticky lg:top-28 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:flex-col lg:items-end dark:lg:border-slate-800/60">
+                        <aside className="hidden lg:flex lg:ml-auto lg:w-[260px] lg:pl-4 lg:border-l lg:border-slate-200/70 lg:sticky lg:top-[var(--site-header-height,80px)] lg:pt-[var(--site-sticky-gap,30px)] lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:flex-col lg:items-end dark:lg:border-slate-800/60">
                             <TableOfContents items={post.toc} />
                         </aside>
                     </div>

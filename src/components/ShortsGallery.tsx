@@ -57,7 +57,7 @@ export default function ShortsGallery() {
       setError(null)
 
       if (!pageToken && data.items.length === 0) {
-        setError("No shorts found for this channel yet. Upload a Short to YouTube and refresh.")
+        setError("No shorts added yet.")
       }
     } catch (err) {
       console.error(err)

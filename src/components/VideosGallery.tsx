@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useCallback, useEffect, useState } from "react"
 
 type VideoItem = {
@@ -23,7 +24,6 @@ export default function VideosGallery() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [initialized, setInitialized] = useState(false)
-  const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null)
 
   const loadVideos = useCallback(async (pageToken?: string) => {
     try {
@@ -60,27 +60,6 @@ export default function VideosGallery() {
 
   const hasContent = videos.length > 0
 
-  useEffect(() => {
-    if (!activeVideo) {
-      document.body.style.removeProperty("overflow")
-      return
-    }
-
-    document.body.style.setProperty("overflow", "hidden")
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setActiveVideo(null)
-      }
-    }
-
-    window.addEventListener("keydown", handleKeyDown)
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-      document.body.style.removeProperty("overflow")
-    }
-  }, [activeVideo])
-
   return (
     <div className="space-y-8">
       {!initialized && loading && (
@@ -107,11 +86,10 @@ export default function VideosGallery() {
               key={video.id}
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-900/60"
             >
-              <button
-                type="button"
-                onClick={() => setActiveVideo(video)}
+              <Link
+                href={`/videos/${video.id}`}
                 className="group relative block w-full overflow-hidden bg-slate-200 pt-[56.25%] dark:bg-slate-800"
-                aria-label={`Play ${video.title}`}
+                aria-label={`Open ${video.title}`}
               >
                 {video.thumbnail ? (
                   <img
@@ -137,10 +115,12 @@ export default function VideosGallery() {
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-              </button>
+              </Link>
               <div className="p-5">
                 <h3 className="line-clamp-2 text-lg font-semibold text-slate-900 dark:text-white">
-                  {video.title}
+                  <Link href={`/videos/${video.id}`} className="hover:underline">
+                    {video.title}
+                  </Link>
                 </h3>
                 {video.publishedAt && (
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
@@ -152,6 +132,25 @@ export default function VideosGallery() {
                     {video.description}
                   </p>
                 )}
+                <Link
+                  href={`/videos/${video.id}`}
+                  className="mt-4 inline-flex items-center text-sm font-semibold text-primary transition hover:text-primary-dark"
+                >
+                  Open details
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-2 h-4 w-4"
+                  >
+                    <path d="M7 17 17 7" />
+                    <path d="M7 7h10v10" />
+                  </svg>
+                </Link>
                 <a
                   href={`https://www.youtube.com/watch?v=${video.id}`}
                   target="_blank"
@@ -197,48 +196,6 @@ export default function VideosGallery() {
         )}
       </div>
 
-      {activeVideo && (
-        <div className="fixed inset-x-0 bottom-0 top-[5.5rem] z-50 flex items-center justify-center bg-black/80 px-4 py-8">
-          <button
-            type="button"
-            className="absolute right-6 top-6 text-slate-200 transition hover:text-white"
-            onClick={() => setActiveVideo(null)}
-            aria-label="Close video"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-7 w-7"
-            >
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
-          <div className="w-full max-w-5xl">
-            <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 shadow-[0_20px_60px_rgba(15,23,42,0.45)] backdrop-blur-xl">
-              <div className="relative w-full pt-[56.25%]">
-                <iframe
-                  title={activeVideo.title}
-                  src={`https://www.youtube.com/embed/${activeVideo.id}?autoplay=1&rel=0&modestbranding=1`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
-            </div>
-            <div className="mt-4 text-center">
-              <h2 className="text-xl font-semibold text-white">
-                {activeVideo.title}
-              </h2>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

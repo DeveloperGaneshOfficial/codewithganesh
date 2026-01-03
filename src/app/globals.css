@@ -25,6 +25,12 @@
     scroll-behavior: smooth;
   }
 
+  :root {
+    --site-header-height: 80px;
+    --site-breadcrumbs-height: 44px;
+    --site-sticky-gap: 30px;
+  }
+
 }
 
 /* Blueprint pattern background */

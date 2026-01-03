@@ -25,7 +25,10 @@ export default function TableOfContents({ items = [], title = "On this page" }: 
 
   const getScrollOffset = () => {
     const header = document.querySelector<HTMLElement>("[data-site-header]")
-    return header ? header.getBoundingClientRect().height + 24 : 112
+    const breadcrumbs = document.querySelector<HTMLElement>("[data-site-breadcrumbs]")
+    const headerHeight = header ? header.getBoundingClientRect().height : 88
+    const breadcrumbsHeight = breadcrumbs ? breadcrumbs.getBoundingClientRect().height : 0
+    return headerHeight + breadcrumbsHeight + 24
   }
 
   useEffect(() => {

@@ -111,6 +111,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
         const { extractTocHeadings } = await import('pliny/mdx-plugins/index.js')
         const toc = await extractTocHeadings(content)
 
+        const normalizedToc = (Array.isArray(toc) ? toc : []).map((item) => {
+            if (item.url === '#overview') {
+                return { ...item, url: '#post-top' }
+            }
+            return item
+        })
+
         // Compile MDX
         const { content: mdxContent } = await compileMDX({
             source: content,
@@ -162,7 +169,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
             images: data.images,
             draft: data.draft,
             category: data.category,
-            toc: Array.isArray(toc) ? toc : [],
+            toc: normalizedToc,
             body: mdxContent
         }
     } catch (error) {

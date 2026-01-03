@@ -1,7 +1,7 @@
 "use client"
 
 import "../app/globals.css";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Menu } from "lucide-react"
 import Link from "next/link"
 import {
@@ -36,13 +36,40 @@ const brandFont = brandFontPlayful
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>("[data-site-header]")
+    if (!header) return
+
+    const update = () => {
+      const height = Math.ceil(header.getBoundingClientRect().height)
+      if (height > 0) {
+        document.documentElement.style.setProperty("--site-header-height", `${height}px`)
+      }
+    }
+
+    update()
+
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(update)
+      observer.observe(header)
+      window.addEventListener("resize", update)
+      return () => {
+        observer.disconnect()
+        window.removeEventListener("resize", update)
+      }
+    }
+
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+
 
   // No admin check content
 
 
   return (
-    <header data-site-header className="sticky top-0 z-50 bg-white/90 dark:bg-tech-dark/90 supports-[backdrop-filter]:bg-white/70 supports-[backdrop-filter]:dark:bg-tech-dark/70 backdrop-blur-[14px] shadow-md transition-theme">
-      <div className="container mx-auto max-w-7xl border-b border-slate-200/70 px-4 sm:px-6 lg:px-8 dark:border-slate-800/70">
+    <header data-site-header className="sticky top-0 z-50 bg-white dark:bg-tech-dark shadow-md transition-theme">
+      <div className="container mx-auto max-w-7xl border-b border-slate-200/30 px-4 sm:px-6 lg:px-8 dark:border-slate-800/40">
         <div className="flex items-center gap-4 py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="CodeWithGanesh home">

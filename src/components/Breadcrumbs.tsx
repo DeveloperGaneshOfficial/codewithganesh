@@ -1,5 +1,8 @@
+"use client"
+
 import Link from 'next/link'
 import { ChevronRight, Home, TagIcon } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 
 type BreadcrumbItem = {
   label: string
@@ -8,13 +11,52 @@ type BreadcrumbItem = {
 
 type BreadcrumbsProps = {
   items: BreadcrumbItem[]
+  sticky?: boolean
 }
 
 const iconMap = [Home, TagIcon]
 
-export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+export default function Breadcrumbs({ items, sticky = false }: BreadcrumbsProps) {
+  const navRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const element = navRef.current
+    if (!element) return
+
+    const update = () => {
+      const height = Math.ceil(element.getBoundingClientRect().height)
+      if (height > 0) {
+        document.documentElement.style.setProperty('--site-breadcrumbs-height', `${height}px`)
+      }
+    }
+
+    update()
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const observer = new ResizeObserver(update)
+      observer.observe(element)
+      window.addEventListener('resize', update)
+      return () => {
+        observer.disconnect()
+        window.removeEventListener('resize', update)
+      }
+    }
+
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
+    <nav
+      ref={navRef}
+      aria-label="Breadcrumb"
+      data-site-breadcrumbs
+      className={`mb-[10px] ${
+        sticky
+          ? 'sticky top-[var(--site-header-height,80px)] z-40 w-full border-b border-slate-200/70 bg-white pb-3 pt-[var(--site-sticky-gap,30px)] transition-theme dark:border-slate-800/70 dark:bg-tech-dark'
+          : ''
+      }`}
+    >
       <ol className="flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
         {items.map((item, index) => {
           const isLast = index === items.length - 1
