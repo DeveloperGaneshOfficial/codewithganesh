@@ -9,8 +9,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #FF0000;
-  --color-primary-dark: #cc0000;
+  --color-primary: #dc2626;
+  --color-primary-dark: #b91c1c;
   --color-tech-blue: #1E3A8A;
   --color-tech-blue-light: #3B82F6;
   --color-tech-dark: rgb(15 23 42);
@@ -143,7 +143,7 @@
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #FF0000;
+  background-color: var(--color-primary);
   transition: width 0.3s ease;
 }
 
