@@ -43,7 +43,7 @@ export default async function BlogPage(props: { searchParams: Promise<{ category
     }
 
     return (
-        <main className="min-h-screen transition-theme py-20">
+        <main className="min-h-screen transition-theme py-2">
             <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto text-center mb-16">
                     <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">

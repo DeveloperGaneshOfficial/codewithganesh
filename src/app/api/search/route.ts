@@ -2,13 +2,14 @@ import { NextResponse } from 'next/server'
 import Fuse from 'fuse.js'
 import type { IFuseOptions } from 'fuse.js'
 import { getBlogPosts } from '@/lib/mdx'
+import { getVideoPageMetas } from '@/lib/video-mdx'
 
 type SearchDocument = {
   id: string
   href: string
   title: string
   description: string
-  type: 'Page' | 'Article'
+  type: 'Page' | 'Article' | 'Video'
   tags?: string[]
   date?: string
 }
@@ -77,7 +78,17 @@ export async function GET(request: Request) {
     date: post.date,
   }))
 
-  const documents: SearchDocument[] = [...STATIC_PAGES, ...postDocuments]
+  const videoMetas = getVideoPageMetas()
+  const videoDocuments: SearchDocument[] = videoMetas.map((video) => ({
+    id: `video-${video.id}`,
+    href: `/videos/${video.slug}`,
+    title: video.title,
+    description: video.summary ?? '',
+    type: 'Video',
+    date: video.date,
+  }))
+
+  const documents: SearchDocument[] = [...STATIC_PAGES, ...videoDocuments, ...postDocuments]
 
   if (documents.length === 0) {
     return NextResponse.json({ query, results: [] })
@@ -98,7 +109,14 @@ export async function GET(request: Request) {
       const dateB = b.date ? new Date(b.date).getTime() : 0
       return dateB - dateA
     })
-    results = [...STATIC_PAGES, ...sortedPosts].map((item) => ({
+
+    const sortedVideos = [...videoDocuments].sort((a, b) => {
+      const dateA = a.date ? new Date(a.date).getTime() : 0
+      const dateB = b.date ? new Date(b.date).getTime() : 0
+      return dateB - dateA
+    })
+
+    results = [...STATIC_PAGES, ...sortedVideos, ...sortedPosts].map((item) => ({
       ...item,
       score: null,
     }))

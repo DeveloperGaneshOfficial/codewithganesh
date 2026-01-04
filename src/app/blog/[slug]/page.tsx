@@ -8,7 +8,6 @@ import { format, parseISO } from 'date-fns'
 import { ArrowRight } from 'lucide-react'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import TableOfContents from '@/components/TableOfContents'
-import GoToTopButton from '@/components/GoToTopButton'
 import ShareButtons from '@/components/ShareButtons'
 
 export async function generateStaticParams() {
@@ -65,7 +64,11 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                 <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="lg:flex lg:items-start lg:gap-12">
                         <div className="lg:flex-1 lg:min-w-0">
-                            <div id="post-top" className="scroll-mt-28" />
+                            <div
+                                id="post-top"
+                                className="h-0 scroll-mt-[calc(var(--site-header-height,80px)+var(--site-breadcrumbs-height,44px)+24px)]"
+                                aria-hidden="true"
+                            />
                             <Breadcrumbs
                                 sticky
                                 items={[
@@ -77,7 +80,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                                     { label: post.title },
                                 ]}
                             />
-                            <header className="mb-6 text-center lg:text-left">
+                            <header className="mb-6 mt-6 text-center lg:text-left scroll-mt-[calc(var(--site-header-height,80px)+var(--site-breadcrumbs-height,44px)+24px)] lg:mt-8">
                                 <div className="flex flex-wrap items-center justify-center gap-x-2 text-sm text-slate-500 dark:text-slate-400 mb-4 lg:justify-start">
                                     {primaryTag ? (
                                         <Link
@@ -192,7 +195,6 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                     </div>
                 </div>
             </main>
-            <GoToTopButton />
         </>
     )
 }

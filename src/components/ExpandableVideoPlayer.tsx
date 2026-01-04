@@ -13,6 +13,7 @@ type PlayerMode = "idle" | "expanded" | "mini"
 export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: ExpandableVideoPlayerProps) {
   const [mode, setMode] = useState<PlayerMode>("idle")
   const [playerNonce, setPlayerNonce] = useState(0)
+  const expandedTop = 'calc(var(--site-header-height,80px) + var(--site-breadcrumbs-height,44px) + var(--site-sticky-gap,30px))'
 
   useEffect(() => {
     if (mode !== "expanded") {
@@ -35,7 +36,7 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
     }
   }, [mode])
 
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`
+  const embedUrl = `https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&playsinline=1`
   const previewImage = (thumbnail && thumbnail.trim().length > 0)
     ? thumbnail
     : `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
@@ -80,7 +81,10 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
       )}
 
       {mode === "expanded" && (
-        <div className="fixed inset-x-0 bottom-0 top-[5.5rem] z-50">
+        <div
+          className="fixed inset-x-0 bottom-0 z-50"
+          style={{ top: expandedTop }}
+        >
           <div className="absolute inset-0 bg-black/80" />
         </div>
       )}
@@ -89,14 +93,15 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
         <div
           className={
             mode === "expanded"
-              ? "fixed inset-x-0 bottom-0 top-[5.5rem] z-50 flex items-center justify-center px-4 py-8"
+              ? "fixed inset-x-0 bottom-0 z-50 grid place-items-center p-4"
               : "fixed bottom-4 right-4 z-50 w-[360px] max-w-[calc(100vw-2rem)]"
           }
+          style={mode === "expanded" ? { top: expandedTop } : undefined}
         >
           <div
             className={
               mode === "expanded"
-                ? "w-full max-w-5xl"
+                ? "relative w-full max-w-4xl"
                 : "overflow-hidden rounded-2xl border border-slate-200/70 bg-slate-950 shadow-lg dark:border-slate-800/60"
             }
           >
@@ -168,7 +173,7 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
                 <iframe
                   key={`player-${playerNonce}`}
                   title={title}
-                  src={`${embedUrl}&autoplay=1`}
+                  src={embedUrl}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute inset-0 h-full w-full"

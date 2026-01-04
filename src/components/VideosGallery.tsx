@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react"
 
 type VideoItem = {
   id: string
+  slug: string
   title: string
   publishedAt: string | null
   description: string | null
@@ -67,7 +68,7 @@ export default function VideosGallery() {
           {Array.from({ length: FETCH_LIMIT }).map((_, index) => (
             <div
               key={index}
-              className="h-[320px] animate-pulse rounded-2xl bg-slate-200/70 dark:bg-slate-700/60"
+              className="h-[288px] animate-pulse rounded-2xl bg-slate-200/70 dark:bg-slate-700/60"
             />
           ))}
         </div>
@@ -87,7 +88,7 @@ export default function VideosGallery() {
               className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-900/60"
             >
               <Link
-                href={`/videos/${video.id}`}
+                href={`/videos/${video.slug}`}
                 className="group relative block w-full overflow-hidden bg-slate-200 pt-[56.25%] dark:bg-slate-800"
                 aria-label={`Open ${video.title}`}
               >
@@ -110,15 +111,15 @@ export default function VideosGallery() {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="h-14 w-14 text-white drop-shadow"
+                    className="h-12 w-12 text-white drop-shadow"
                   >
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
               </Link>
-              <div className="p-5">
-                <h3 className="line-clamp-2 text-lg font-semibold text-slate-900 dark:text-white">
-                  <Link href={`/videos/${video.id}`} className="hover:underline">
+              <div className="p-4">
+                <h3 className="line-clamp-2 text-base font-semibold text-slate-900 dark:text-white">
+                  <Link href={`/videos/${video.slug}`} className="hover:underline">
                     {video.title}
                   </Link>
                 </h3>
@@ -127,13 +128,13 @@ export default function VideosGallery() {
                     {new Date(video.publishedAt).toLocaleDateString()}
                   </p>
                 )}
-                {video.description && (
+                {/* {video.description && (
                   <p className="mt-4 line-clamp-3 text-sm text-slate-600 dark:text-slate-300">
                     {video.description}
                   </p>
-                )}
+                )} */}
                 <Link
-                  href={`/videos/${video.id}`}
+                  href={`/videos/${video.slug}`}
                   className="mt-4 inline-flex items-center text-sm font-semibold text-primary transition hover:text-primary-dark"
                 >
                   Open details

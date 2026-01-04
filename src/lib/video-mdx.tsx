@@ -17,6 +17,7 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
 
 import { components } from '@/components/MDXComponents'
 import TOCInline from 'pliny/ui/TOCInline'
+import { slugify } from '@/lib/utils'
 
 export type VideoTocItem = {
   value: string
@@ -26,6 +27,7 @@ export type VideoTocItem = {
 
 export type VideoPage = {
   id: string
+  slug: string
   title: string
   date: string
   summary?: string
@@ -33,6 +35,16 @@ export type VideoPage = {
   youtubeId: string
   toc: VideoTocItem[]
   body: any
+}
+
+export type VideoPageMeta = {
+  id: string
+  slug: string
+  title: string
+  date?: string
+  summary?: string
+  thumbnail?: string
+  youtubeId: string
 }
 
 const root = process.cwd()
@@ -57,6 +69,53 @@ export function getVideoPageIds(): string[] {
     .filter((file) => file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx$/, ''))
     .filter((id) => id.toLowerCase() !== 'readme')
+}
+
+export function getVideoPageMetas(): VideoPageMeta[] {
+  const ids = getVideoPageIds()
+
+  return ids
+    .map((id) => {
+      const filePath = path.join(videosDir, `${id}.mdx`)
+      if (!fs.existsSync(filePath)) return null
+
+      const source = fs.readFileSync(filePath, 'utf8')
+      const { data } = matter(source)
+
+      const title = typeof data.title === 'string' ? data.title : 'Untitled Video'
+      const date = typeof data.date === 'string' ? data.date : undefined
+      const summary = typeof data.summary === 'string' ? data.summary : undefined
+      const thumbnail = typeof data.thumbnail === 'string' ? data.thumbnail : undefined
+      const youtubeId = typeof data.youtubeId === 'string' && data.youtubeId.trim().length > 0
+        ? data.youtubeId.trim()
+        : id
+
+      return {
+        id,
+        slug: slugify(title),
+        title,
+        date,
+        summary,
+        thumbnail,
+        youtubeId,
+      } satisfies VideoPageMeta
+    })
+    .filter((item): item is VideoPageMeta => Boolean(item))
+}
+
+export function getVideoPageIdBySlug(slug: string): string | null {
+  const safeSlug = slug.trim().toLowerCase()
+  if (!safeSlug) return null
+
+  const metas = getVideoPageMetas()
+  const match = metas.find((meta) => meta.slug === safeSlug)
+  return match?.id ?? null
+}
+
+export async function getVideoPageBySlug(slug: string): Promise<VideoPage | null> {
+  const id = getVideoPageIdBySlug(slug)
+  if (!id) return null
+  return getVideoPageById(id)
 }
 
 export async function getVideoPageById(id: string): Promise<VideoPage | null> {
@@ -110,6 +169,7 @@ export async function getVideoPageById(id: string): Promise<VideoPage | null> {
   })
 
   const title = typeof data.title === 'string' ? data.title : 'Untitled Video'
+  const slug = slugify(title)
   const dateRaw = typeof data.date === 'string' ? data.date : null
   const date = dateRaw ? new Date(dateRaw).toISOString() : new Date().toISOString()
   const summary = typeof data.summary === 'string' ? data.summary : undefined
@@ -127,6 +187,7 @@ export async function getVideoPageById(id: string): Promise<VideoPage | null> {
 
   return {
     id: safeId,
+    slug,
     title,
     date,
     summary,

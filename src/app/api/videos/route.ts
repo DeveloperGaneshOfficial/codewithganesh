@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { videos } from '@/data/videos'
+import { slugify } from '@/lib/utils'
 
 const DEFAULT_LIMIT = 6
 const MAX_LIMIT = 24
@@ -28,6 +29,7 @@ type YouTubeSearchResponse = {
 
 type VideoItem = {
   id: string
+  slug: string
   title: string
   publishedAt: string | null
   description: string | null
@@ -61,6 +63,7 @@ export async function GET(request: Request) {
     })
     .map<VideoItem>((video) => ({
       id: video.id,
+      slug: slugify(video.title),
       title: video.title,
       publishedAt: video.publishedAt ?? null,
       description: video.description ?? null,
