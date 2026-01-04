@@ -74,33 +74,35 @@ export function getVideoPageIds(): string[] {
 export function getVideoPageMetas(): VideoPageMeta[] {
   const ids = getVideoPageIds()
 
-  return ids
-    .map((id) => {
-      const filePath = path.join(videosDir, `${id}.mdx`)
-      if (!fs.existsSync(filePath)) return null
+  const metas: VideoPageMeta[] = []
 
-      const source = fs.readFileSync(filePath, 'utf8')
-      const { data } = matter(source)
+  for (const id of ids) {
+    const filePath = path.join(videosDir, `${id}.mdx`)
+    if (!fs.existsSync(filePath)) continue
 
-      const title = typeof data.title === 'string' ? data.title : 'Untitled Video'
-      const date = typeof data.date === 'string' ? data.date : undefined
-      const summary = typeof data.summary === 'string' ? data.summary : undefined
-      const thumbnail = typeof data.thumbnail === 'string' ? data.thumbnail : undefined
-      const youtubeId = typeof data.youtubeId === 'string' && data.youtubeId.trim().length > 0
-        ? data.youtubeId.trim()
-        : id
+    const source = fs.readFileSync(filePath, 'utf8')
+    const { data } = matter(source)
 
-      return {
-        id,
-        slug: slugify(title),
-        title,
-        date,
-        summary,
-        thumbnail,
-        youtubeId,
-      } satisfies VideoPageMeta
+    const title = typeof data.title === 'string' ? data.title : 'Untitled Video'
+    const date = typeof data.date === 'string' ? data.date : undefined
+    const summary = typeof data.summary === 'string' ? data.summary : undefined
+    const thumbnail = typeof data.thumbnail === 'string' ? data.thumbnail : undefined
+    const youtubeId = typeof data.youtubeId === 'string' && data.youtubeId.trim().length > 0
+      ? data.youtubeId.trim()
+      : id
+
+    metas.push({
+      id,
+      slug: slugify(title),
+      title,
+      date,
+      summary,
+      thumbnail,
+      youtubeId,
     })
-    .filter((item): item is VideoPageMeta => Boolean(item))
+  }
+
+  return metas
 }
 
 export function getVideoPageIdBySlug(slug: string): string | null {
