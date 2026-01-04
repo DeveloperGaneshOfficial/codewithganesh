@@ -99,6 +99,10 @@ function extractYouTubeId(idOrUrl) {
   try {
     const url = new URL(value)
 
+    // youtube.com/embed/<id>
+    const embedMatch = url.pathname.match(/\/embed\/([^/]+)/i)
+    if (embedMatch?.[1] && /^[a-zA-Z0-9_-]{11}$/.test(embedMatch[1])) return embedMatch[1]
+
     // youtube.com/watch?v=...
     const v = url.searchParams.get('v')
     if (v && /^[a-zA-Z0-9_-]{11}$/.test(v)) return v
@@ -150,7 +154,8 @@ function parseVideosCsv(text) {
 
   for (const row of rows.slice(1)) {
     const record = toRecord(header, row)
-    const id = extractYouTubeId(record.id_or_url)
+    const idOrUrl = record.id_or_url
+    const id = extractYouTubeId(idOrUrl)
     if (!id) continue
 
     const durationRaw = (record.duration || 'long').toLowerCase()
@@ -185,7 +190,8 @@ function parseShortsCsv(text) {
 
   for (const row of rows.slice(1)) {
     const record = toRecord(header, row)
-    const id = extractYouTubeId(record.id_or_url)
+    const idOrUrl = record.id_or_url
+    const id = extractYouTubeId(idOrUrl)
     if (!id) continue
 
     const title = record.title || 'Untitled Short'

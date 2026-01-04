@@ -6,5 +6,13 @@
     "description": "In this video, I’ll show you how to use Google Opal, Google’s latest no-code AI tool, to build AI agents and automations using just natural language prompts — no coding required! Google Opal is a No Code platform currently in the experimental phase. In Google Opal, you just need to input a prompt and your mini AI apps will be generated. Google Opal take cares about your app's backend and frontend. In this video I gave the walkthrough of this platform. Also, I have created one mini app(gem) using Google Opal.",
     "thumbnail": "https://img.youtube.com/vi/vawU5D-b0PU/maxresdefault.jpg",
     "duration": "long"
+  },
+  {
+    "id": "2lQoTqga0Uw",
+    "title": "I Built a Calculator Using Only HTML, CSS & JavaScript",
+    "publishedAt": "2025-12-09T18:30:00.000Z",
+    "description": "Learn how to create a calculator using HTML, CSS, and JavaScript in this step-by-step tutorial. Perfect for beginners looking to improve their coding skills!\r\n\r\nIn this video, we will create a Calculator using HTML, CSS, and JavaScript. First, we will design the layout of the webpage using HTML, then style it using CSS. Finally, we will add logic using JavaScript.",
+    "thumbnail": "https://img.youtube.com/vi/2lQoTqga0Uw/maxresdefault.jpg",
+    "duration": "long"
   }
 ]

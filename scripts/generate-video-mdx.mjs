@@ -30,6 +30,23 @@ function toFrontmatterValue(value) {
   return `"${safe}"`
 }
 
+function removeYoutubeSrcFrontmatter(existingMdx) {
+  if (!existingMdx.startsWith('---\n')) return null
+  const endIndex = existingMdx.indexOf('\n---\n', 4)
+  if (endIndex === -1) return null
+
+  const frontmatter = existingMdx.slice(4, endIndex)
+  const rest = existingMdx.slice(endIndex + 5)
+
+  if (!/^youtubeSrc\s*:/m.test(frontmatter)) return null
+
+  const lines = frontmatter
+    .split(/\r?\n/)
+    .filter((line) => !/^youtubeSrc\s*:/.test(line))
+
+  return `---\n${lines.join('\n')}\n---\n${rest}`
+}
+
 function buildMdx({ id, title, publishedAt, description, thumbnail }) {
   const iso = toIsoDate(publishedAt)
   const date = iso.slice(0, 10)
@@ -80,6 +97,7 @@ function main() {
 
   let created = 0
   let skipped = 0
+  let updated = 0
 
   for (const video of videos) {
     const id = String(video?.id ?? '').trim()
@@ -87,7 +105,14 @@ function main() {
 
     const outPath = path.join(OUT_DIR, `${id}.mdx`)
     if (fileExists(outPath)) {
-      skipped++
+      const existing = fs.readFileSync(outPath, 'utf8')
+      const next = removeYoutubeSrcFrontmatter(existing)
+      if (next) {
+        fs.writeFileSync(outPath, next, 'utf8')
+        updated++
+      } else {
+        skipped++
+      }
       continue
     }
 
@@ -104,6 +129,7 @@ function main() {
   }
 
   console.log(`Video MDX stubs: created=${created} skipped=${skipped}`)
+  console.log(`Video MDX stubs: updated=${updated}`)
   console.log(`Output folder: ${path.relative(ROOT, OUT_DIR)}`)
 }
 

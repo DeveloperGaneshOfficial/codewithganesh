@@ -36,10 +36,8 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
     }
   }, [mode])
 
-  const embedUrl = `https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&playsinline=1`
-  const previewImage = (thumbnail && thumbnail.trim().length > 0)
-    ? thumbnail
-    : `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
+  const embedUrl = `https://www.youtube.com/embed/${youtubeId}`
+  const previewImage = (thumbnail && thumbnail.trim().length > 0) ? thumbnail : ''
 
   const stopPlayback = () => {
     // Force a fresh iframe mount next time we play (stops playback reliably)
@@ -57,12 +55,16 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
           aria-label={`Play ${title}`}
         >
           <div className="relative w-full pt-[56.25%]">
-            <img
-              src={previewImage}
-              alt={title}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+            {previewImage ? (
+              <img
+                src={previewImage}
+                alt={title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-black/25" aria-hidden="true" />
+            )}
             <div className="absolute inset-0 bg-black/25 opacity-100 transition-opacity duration-300 group-hover:bg-black/35" />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur transition group-hover:bg-white/25">
@@ -172,9 +174,11 @@ export default function ExpandableVideoPlayer({ youtubeId, title, thumbnail }: E
               <div className="relative w-full pt-[56.25%]">
                 <iframe
                   key={`player-${playerNonce}`}
-                  title={title}
+                  title="YouTube video player"
                   src={embedUrl}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                   className="absolute inset-0 h-full w-full"
                 />

@@ -32,6 +32,7 @@ export type VideoPage = {
   date: string
   summary?: string
   thumbnail?: string
+  youtubeSrc?: string
   youtubeId: string
   toc: VideoTocItem[]
   body: any
@@ -44,6 +45,7 @@ export type VideoPageMeta = {
   date?: string
   summary?: string
   thumbnail?: string
+  youtubeSrc?: string
   youtubeId: string
 }
 
@@ -87,6 +89,9 @@ export function getVideoPageMetas(): VideoPageMeta[] {
     const date = typeof data.date === 'string' ? data.date : undefined
     const summary = typeof data.summary === 'string' ? data.summary : undefined
     const thumbnail = typeof data.thumbnail === 'string' ? data.thumbnail : undefined
+    const youtubeSrc = typeof data.youtubeSrc === 'string' && data.youtubeSrc.trim().length > 0
+      ? data.youtubeSrc.trim()
+      : undefined
     const youtubeId = typeof data.youtubeId === 'string' && data.youtubeId.trim().length > 0
       ? data.youtubeId.trim()
       : id
@@ -98,6 +103,7 @@ export function getVideoPageMetas(): VideoPageMeta[] {
       date,
       summary,
       thumbnail,
+      youtubeSrc,
       youtubeId,
     })
   }
@@ -176,6 +182,9 @@ export async function getVideoPageById(id: string): Promise<VideoPage | null> {
   const date = dateRaw ? new Date(dateRaw).toISOString() : new Date().toISOString()
   const summary = typeof data.summary === 'string' ? data.summary : undefined
   const thumbnail = typeof data.thumbnail === 'string' ? data.thumbnail : undefined
+  const youtubeSrc = typeof data.youtubeSrc === 'string' && data.youtubeSrc.trim().length > 0
+    ? data.youtubeSrc.trim()
+    : undefined
   const youtubeId = typeof data.youtubeId === 'string' && data.youtubeId.trim().length > 0
     ? data.youtubeId.trim()
     : safeId
@@ -194,6 +203,7 @@ export async function getVideoPageById(id: string): Promise<VideoPage | null> {
     date,
     summary,
     thumbnail,
+    youtubeSrc,
     youtubeId,
     toc: normalizedToc,
     body: mdxContent,

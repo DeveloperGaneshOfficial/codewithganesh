@@ -71,7 +71,11 @@ export default async function VideoPage(props: { params: Promise<{ id: string }>
                 </header>
 
                 <section className="mb-10">
-                  <ExpandableVideoPlayer youtubeId={pageBySlug.youtubeId} title={pageBySlug.title} thumbnail={pageBySlug.thumbnail} />
+                  <ExpandableVideoPlayer
+                    youtubeId={pageBySlug.youtubeId}
+                    title={pageBySlug.title}
+                    thumbnail={pageBySlug.thumbnail}
+                  />
                 </section>
 
                 <article data-video-content>
