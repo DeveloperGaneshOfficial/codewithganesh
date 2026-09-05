@@ -38,8 +38,25 @@ export default async function VideoPage(props: { params: Promise<{ id: string }>
 
   const pageBySlug = await getVideoPageBySlug(id)
   if (pageBySlug) {
+    const videoJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: pageBySlug.title,
+      description: pageBySlug.summary || pageBySlug.title,
+      thumbnailUrl: pageBySlug.thumbnail
+        ? [pageBySlug.thumbnail]
+        : [`https://img.youtube.com/vi/${pageBySlug.youtubeId}/maxresdefault.jpg`],
+      uploadDate: pageBySlug.date,
+      embedUrl: `https://www.youtube.com/embed/${pageBySlug.youtubeId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${pageBySlug.youtubeId}`,
+    }
+
     return (
       <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }}
+        />
         <main className="min-h-screen transition-theme pb-20">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="lg:flex lg:items-start lg:gap-12">
