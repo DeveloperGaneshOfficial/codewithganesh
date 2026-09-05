@@ -83,6 +83,9 @@ export default function Header() {
               <Link href="/videos" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Videos</Link>
               <Link href="/shorts" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Shorts</Link>
               <Link href="/blog" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Blog</Link>
+              <Link href="/resources" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Resources</Link>
+              <Link href="/about" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">About</Link>
+              <Link href="/contact" className="nav-link text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Contact</Link>
 
               <Link href="https://youtube.com" target="_blank" className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg transition-theme shadow-md hover:shadow-lg">
                 Subscribe
@@ -105,6 +108,9 @@ export default function Header() {
               <Link href="/videos" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Videos</Link>
               <Link href="/shorts" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Shorts</Link>
               <Link href="/blog" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Blog</Link>
+              <Link href="/resources" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Resources</Link>
+              <Link href="/about" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">About</Link>
+              <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary font-medium transition-theme">Contact</Link>
 
               <Link href="https://youtube.com" target="_blank" className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg text-center mt-2 shadow-md">
                 Subscribe on YouTube
