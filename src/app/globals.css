@@ -9,14 +9,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-primary: #dc2626;
-  --color-primary-dark: #b91c1c;
+  --color-primary: #1D63ED;
+  --color-primary-dark: #114DC4;
   --color-tech-blue: #1E3A8A;
   --color-tech-blue-light: #3B82F6;
   --color-tech-dark: rgb(15 23 42);
 
   --font-inter: var(--font-geist-sans, 'Geist Sans', sans-serif);
-  --font-mono: var(--font-geist-mono, 'Geist Mono', monospace);
+  --font-mono: var(--font-jetbrains-mono, 'JetBrains Mono', monospace);
   --gradient-radial: radial-gradient(var(--tw-gradient-stops));
 }
 
@@ -521,24 +521,69 @@
   height: 1.25rem;
 }
 
-/* Code block copy button positioning */
-pre {
-  position: relative;
+/* Code block line highlighting (rehype-pretty-code) */
+code[data-line-numbers] {
+  counter-reset: line;
 }
 
-/* Target Pliny's copy button more specifically */
-pre>div {
-  position: relative;
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.0rem;
+  text-align: right;
+  color: rgba(148, 163, 184, 0.4);
 }
 
-pre button,
-div[class*="copy"] button,
-.code-block-wrapper button {
-  position: absolute !important;
-  top: 0.5rem !important;
-  right: 0.5rem !important;
-  left: auto !important;
-  margin: 0 !important;
-  inset-inline-start: auto !important;
-  inset-inline-end: 0.5rem !important;
+code > [data-line] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-left: 2px solid transparent;
+}
+
+code > [data-highlighted-line] {
+  background-color: rgba(96, 165, 250, 0.15);
+  border-left-color: rgba(96, 165, 250, 0.7);
+  box-shadow: inset 2px 0 0 0 rgba(96, 165, 250, 0.5);
+}
+
+code[data-line-numbers] > [data-highlighted-line]::before {
+  /* color: rgba(96, 165, 250, 0.9); */
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+/* Code block word/token highlighting (rehype-pretty-code) */
+code [data-highlighted-chars] {
+  background-color: rgba(254, 243, 199, 0.25);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.4);
+}
+
+/* Different colors for numbered word groups */
+code [data-highlighted-chars][data-highlighted-chars-id="0"] {
+  background-color: rgba(254, 243, 199, 0.25);
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.4);
+}
+
+code [data-highlighted-chars][data-highlighted-chars-id="1"] {
+  background-color: rgba(220, 252, 231, 0.25);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
+}
+
+code [data-highlighted-chars][data-highlighted-chars-id="2"] {
+  background-color: rgba(254, 226, 226, 0.25);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4);
+}
+
+code [data-highlighted-chars][data-highlighted-chars-id="3"] {
+  background-color: rgba(221, 214, 254, 0.25);
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.4);
+}
+
+code [data-highlighted-chars][data-highlighted-chars-id="4"] {
+  background-color: rgba(207, 250, 254, 0.25);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.4);
 }

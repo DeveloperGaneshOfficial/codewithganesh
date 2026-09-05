@@ -13,8 +13,8 @@ module.exports = {
         mono: ['var(--font-geist-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        primary: '#dc2626',
-        'primary-dark': '#b91c1c',
+        primary: '#1D63ED',
+        'primary-dark': '#114DC4',
         'tech-blue': '#1E3A8A',
         'tech-blue-light': '#3B82F6',
         'tech-dark': '#0F172A',

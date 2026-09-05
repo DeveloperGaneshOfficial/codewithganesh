@@ -1,0 +1,43 @@
+---
+title: 'How I deployed FastAPI Application'
+date: '2025-03-11'
+lastmod: '2025-03-11'
+tags: ['FastAPI', 'Deployment']
+draft: false
+summary: 'Learn to deploy FastAPI application'
+authors: ['Ganesha']
+---
+
+```python showLineNumbers /route/ /FastAPI/
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.route("/")
+def home():
+    return {"message": "Hello World"}
+
+```
+
+
+### Hi
+
+```html showLineNumbers
+<!doctype html>
+<html>
+    <head>
+        <title>Hi this is Ganesh</title>
+        </head>
+    <body>
+        <h1> Hi </h1>
+    </body>
+</html>
+```
+
+### JavaScript
+```js
+let first_name = "Ganesh"
+let last_name = "Deshmukh"
+console.log("My name is " + first_name + last_name)
+
+```

@@ -3,7 +3,13 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Script from 'next/script'
 import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { JetBrains_Mono } from 'next/font/google'
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+})
 
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
@@ -53,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${GeistSans.className} ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.className} ${GeistSans.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
